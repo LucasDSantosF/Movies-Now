@@ -15,7 +15,7 @@ data class MovieDetailsScreenNavigation(
     val title: String,
     val description: String,
     val releaseYear: Int,
-    val durationMinutes: Double,
+    val duration: Double,
     val rating: Double,
     val posterUrl: String,
     val trailerUrl: String,

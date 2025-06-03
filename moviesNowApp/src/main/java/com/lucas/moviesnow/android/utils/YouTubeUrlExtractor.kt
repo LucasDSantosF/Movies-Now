@@ -1,4 +1,4 @@
-package com.lucas.moviesnow.utils
+package com.lucas.moviesnow.android.utils
 
 import kotlin.text.Regex
 

@@ -59,7 +59,7 @@ fun MovieInformationRow(
             Text(
                 textAlign = TextAlign.End,
                 modifier = Modifier.padding(bottom = 12.dp),
-                text = "${String.format("%.2f", movie.durationMinutes)} horas",
+                text = "${String.format("%.2f", movie.duration)} horas",
                 fontSize = TextUnit(value = 16f, type = TextUnitType.Sp),
                 color = MaterialTheme.colorScheme.tertiary
             )

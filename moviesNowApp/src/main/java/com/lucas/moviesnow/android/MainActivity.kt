@@ -12,6 +12,7 @@ import androidx.navigation.toRoute
 import com.lucas.moviesnow.android.screen.MovieDetailsScreen
 import com.lucas.moviesnow.android.screen.MovieDetailsScreenNavigation
 import com.lucas.moviesnow.android.screen.MoviesListScreen
+import com.lucas.moviesnow.android.utils.YouTubeUrlExtractor
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +36,8 @@ class MainActivity : ComponentActivity() {
                                     releaseYear = movie.releaseYear,
                                     rating = movie.rating,
                                     posterUrl = movie.posterUrl,
-                                    trailerUrl = movie.trailerUrl,
-                                    durationMinutes = movie.durationMinutes
+                                    trailerUrl = YouTubeUrlExtractor.extractVideoId(movie.trailerUrl).orEmpty(),
+                                    duration = movie.duration
                                 )
                             )
                         }

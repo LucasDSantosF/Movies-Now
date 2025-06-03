@@ -6,7 +6,6 @@ import com.lucas.moviesnow.data.getwayBuilder.BuilderHttpRequestMocked
 import com.lucas.moviesnow.data.getwayBuilder.mockedMoviesJson
 import com.lucas.moviesnow.data.service.MoviesNowService
 import com.lucas.moviesnow.domain.Movie
-import com.lucas.moviesnow.utils.YouTubeUrlExtractor
 
 
 class MoviesNowServiceImpl : MoviesNowService {
@@ -20,12 +19,12 @@ class MoviesNowServiceImpl : MoviesNowService {
                     Movie(
                         id = it.id,
                         title = it.title,
-                        description = it.description ?: "",
+                        description = it.description.orEmpty(),
                         releaseYear = it.releaseYear,
-                        durationMinutes = it.durationMinutes/60.0,
+                        duration = it.durationMinutes/60.0,
                         rating = it.rating,
                         posterUrl = it.posterUrl,
-                        trailerUrl = YouTubeUrlExtractor.extractVideoId(it.trailerUrl) ?: "",
+                        trailerUrl = it.trailerUrl.orEmpty(),
                     )
                 }
             )
