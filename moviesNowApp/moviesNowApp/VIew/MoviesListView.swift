@@ -15,11 +15,17 @@ struct MoviesListView: View {
                 ScrollView {
                     MoviesHeaderView()
                     VStack(spacing: 20) {
-                        ForEach(successState.movies) { movie in
-                            NavigationLink(destination: MovieDetailsView(movie: movie)) {
-                                MovieCard(movie: movie)
+                        if !successState.movies.isEmpty {
+                            ForEach(successState.movies) { movie in
+                                NavigationLink(destination: MovieDetailsView(movie: movie)) {
+                                    MovieCard(movie: movie)
+                                }
                             }
-                        }
+                        } else 
+                            Text("Nenhum filme encontrado")
+                                .font(.subheadline)
+                                .foregroundColor(ColorTheme.tertiary)
+                        
                     }
                 }
             } else if let failedState = viewModel.uiState.result as MovieNowStateResult.Failed {
