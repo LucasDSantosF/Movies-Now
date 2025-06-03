@@ -33,3 +33,4 @@ Além dessas, outras bibliotecas que já estavam implementadas, como AndroidX e 
 ## Ressalvas
 
 Infelizmente, não consegui testar meu código no iOS porque não tive acesso a um macOS a tempo. No entanto, tenho certeza de que é possível verificar minhas competências através do código escrito.
+Infelizmente também não consegui criar testes unitário e de Ui a tempo, porem tenho outro projeto que no meu GitHub chamado Pokedex que mostram com clareza minha minhas competências em testes.
