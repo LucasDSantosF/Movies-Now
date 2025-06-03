@@ -1,0 +1,21 @@
+type Movie {
+    #Esse codigo foi feito com AI, pois ainda não tinha trabalhado com GraphQl antes.
+    id: ID!
+    title: String!
+    description: String
+    releaseYear: Int!
+    durationMinutes: Int!
+    rating: Float!
+    genre: String!
+    director: String!
+    cast: [String!]!
+    posterUrl: String!
+    trailerUrl: String
+    language: String!
+    country: String!
+    budget: Int
+    revenue: Int
+}
+type Query {
+    movies: [Movie!]!
+}

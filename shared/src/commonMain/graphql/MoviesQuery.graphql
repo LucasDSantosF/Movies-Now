@@ -1,0 +1,13 @@
+query MoviesQuery {
+    movies {
+        #Esse codigo foi feito com AI, pois ainda não tinha trabalhado com GraphQl antes.
+        id
+        title
+        description
+        releaseYear
+        durationMinutes
+        rating
+        posterUrl
+        trailerUrl
+    }
+}
