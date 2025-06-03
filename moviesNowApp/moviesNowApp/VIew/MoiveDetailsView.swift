@@ -1,29 +1,24 @@
 import SwiftUI
+import shared
 
 struct MovieDetailView: View {
-    let movieTitle: String = "Inception"
-    let movieDescription: String = "A skilled thief is offered a chance to have his past crimes forgiven..."
-    let releaseYear: String = "2010"
-    let duration: String = "2,47 horas"
-    let rating: String = "8.8/10"
-    let youtubeVideoURL: String = "https://www.youtube.com/embed/YoJk-4z2u54" // Substitua pela URL de incorporação do vídeo de Inception
+    let movie: Movie
 
     var body: some View {
         VStack(spacing: 0) {
-            // MARK: - Video Miniplayer
+            //Esse codigo foi feito com AI, pois ainda não tinha trabalhado com viodeos no iOS antes.
             ZStack(alignment: .bottomTrailing) {
-                WebView(urlString: youtubeVideoURL)
-                    .frame(height: 200) // Altura do miniplayer
+                WebView(urlString: movie.trailerUrl)
+                    .frame(height: 200)
             }
             
-            // MARK: - Movie Details Section
             HStack(alignment: .top) {
-                // Movie Poster / Thumbnail
                 VStack {
-                    AsyncImage(url: posterImageURL) { phase in
+                    //Esse codigo foi feito com AI, pois ainda não tinha trabalhado com AsyncImage antes.
+                    AsyncImage(url: movie.posterUrl) { phase in
                         switch phase {
                         case .empty:
-                            ProgressView() // Mostra um indicador de carregamento enquanto a imagem carrega
+                            ProgressView()
                                 .frame(width: 120, height: 180)
                         case .success(let image):
                             image
@@ -32,79 +27,48 @@ struct MovieDetailView: View {
                                 .frame(width: 120, height: 180)
                                 .cornerRadius(8)
                         case .failure:
-                            Image(systemName: "photo") // Mostra um ícone de placeholder em caso de erro
+                            Image(systemName: "photo.fill")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 120, height: 180)
-                                .foregroundColor(.gray)
+                                .foregroundColor(ColorTheme.secondary)
                         @unknown default:
                             EmptyView()
                         }
                     }
-                    Spacer() // Empurra o conteúdo para cima
+                    Spacer()
                 }
                 .padding(.leading)
 
-                // Movie Information
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(movieDescription)
+                    Text(movie.description)
                         .font(.callout)
-                        .foregroundColor(.red)
+                        .foregroundColor(ColorTheme.tertiary)
                         .multilineTextAlignment(.leading)
                     
-                    Text(releaseYear)
+                    Text(String(movie.releaseYear))
                         .font(.subheadline)
-                        .foregroundColor(.red)
+                        .foregroundColor(ColorTheme.tertiary)
                     
-                    Text(duration)
+                    Text("\(String(format: "%.2f", movie.duration)) horas")
                         .font(.subheadline)
-                        .foregroundColor(.red)
-                    
-                    HStack {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.yellow)
-                        Text(rating)
-                            .font(.headline)
-                            .foregroundColor(.red)
-                    }
+                        .foregroundColor(ColorTheme.tertiary)
+
+                    Text("⭐ \(String(format: "%.1f", movie.rating))/10")
+                        .font(.headline)
+                        .foregroundColor(ColorTheme.tertiary)
                 }
                 .padding(.horizontal)
-                Spacer() // Empurra o conteúdo para a esquerda
+                Spacer()
             }
             .padding(.top, 16)
-
-            Spacer() // Empurra tudo para cima
+            Spacer()
         }
-        .background(Color.black.edgesIgnoringSafeArea(.all)) // Fundo preto para toda a tela
-        .navigationBarHidden(true) // Oculta a barra de navegação padrão
-        .navigationBarTitleDisplayMode(.inline) // Define o modo de exibição do título
-        .overlay(
-            // Top Bar with "Inception" title and back button
-            HStack {
-                Button(action: {
-                    // Action for back button
-                }) {
-                    Image(systemName: "arrow.left")
-                        .foregroundColor(.white)
-                }
-                Text(movieTitle)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundColor(.red)
-            }
-            .padding(.horizontal)
-            .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0) // Ajusta para a área segura
-            .frame(height: 60)
-            .background(Color.black.opacity(0.8).edgesIgnoringSafeArea(.top))
-            , alignment: .top
-        )
-    }
-}
-
-
-// MARK: - Preview Provider
-struct MovieDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        MovieDetailView()
+        .background(ColorTheme.tertiary.edgesIgnoringSafeArea(.all))
+        .navigationTitle(movie.title)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(ColorTheme.primary, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar) 
+        .toolbarColorScheme(ColorTheme.tertiary, for: .navigationBar)
     }
 }
