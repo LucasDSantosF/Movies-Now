@@ -74,25 +74,6 @@ struct MovieDetailView: View {
             .padding(.top, 16)
 
             Spacer() // Empurra tudo para cima
-
-            // MARK: - Bottom Navigation Bar (Assuming simple representation)
-            HStack {
-                Spacer()
-                Image(systemName: "line.horizontal.3") // Exemplo de ícone
-                    .font(.title2)
-                    .foregroundColor(.white)
-                Spacer()
-                Image(systemName: "circle.fill") // Exemplo de ícone
-                    .font(.title2)
-                    .foregroundColor(.white)
-                Spacer()
-                Image(systemName: "chevron.left") // Exemplo de ícone
-                    .font(.title2)
-                    .foregroundColor(.white)
-                Spacer()
-            }
-            .padding(.bottom, 20) // Espaçamento da parte inferior
-            .background(Color.black.opacity(0.8)) // Fundo da barra de navegação
         }
         .background(Color.black.edgesIgnoringSafeArea(.all)) // Fundo preto para toda a tela
         .navigationBarHidden(true) // Oculta a barra de navegação padrão
@@ -110,15 +91,6 @@ struct MovieDetailView: View {
                     .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(.red)
-                Spacer()
-                // You can add more icons here like in the original image (wifi, battery, etc.)
-                // For simplicity, I'm omitting them but they would be Image(systemName: "...")
-                Text("96%")
-                    .foregroundColor(.white)
-                Image(systemName: "wifi")
-                    .foregroundColor(.white)
-                Image(systemName: "battery.100")
-                    .foregroundColor(.white)
             }
             .padding(.horizontal)
             .padding(.top, UIApplication.shared.windows.first?.safeAreaInsets.top ?? 0) // Ajusta para a área segura
